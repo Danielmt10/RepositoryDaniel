@@ -1,0 +1,89 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body{
+  background: #e6e6e6;
+  background-image: url("https://raw.githubusercontent.com/rost929/Gravity/master/Fondo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+header, .main, footer{
+  width: 85%;
+  max-width: 1000;
+  margin: 20px auto;
+}
+header nav{
+  background: #528fd5;
+  overflow: hidden;
+}
+
+header nav ul{
+  list-style: none;
+}
+
+header nav ul li{
+  float: left;
+}
+
+header nav ul li a{
+  padding: 10px 20px;
+  display: block;
+  color: #fff;
+  text-decoration: none;
+}
+
+header nav ul li a:hover{
+  background: #75acec;
+}
+
+
+.main .articles{
+  font-size: 18px;
+  width: 68.5%;
+  margin-right: 1.5%;
+  float: left;
+  background: #ff8000;
+  text-align: justify;
+}
+
+.main .articles article{
+  padding: 20px;
+  background: #fff;
+  margin: 20px 20px;
+}
+
+aside{
+  width: 30%;
+  background: #CC2EFA;
+  float: left;
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: justify;
+
+}
+
+
+
+.main .articles article h2{
+  text-align: center;
+  margin: 10px;
+  color: #FF0000;
+}
+
+footer{
+  background: #000;
+  color: #fff;
+  clear: both;
+  padding: 10px 0px;
+  text-align: center;
+}
+
+aside h2{
+  text-align: center;
+  margin: 10px;
+}
