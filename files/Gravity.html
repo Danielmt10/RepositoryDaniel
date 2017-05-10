@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+      
+      
+      
+      
+    <style>
+
+body{
+        font-family: sans-serif;
+		font-size: 120%;
+		padding: 4em 4em 4em 4em;
+        background-color: #417CA4;
+}
+
+div{
+	margin: 3%;
+    height: 20%;
+    width: 40%;
+    text-align: center;
+    background-color: #1A5983;
+
+}
+
+.label{
+	display:inline-block;
+	width: 150px;
+}
+
+nolabel {
+	display: block;
+}
+
+#mensaje {
+	color: red;
+}
+
+</style>
+     
+      <script>
+    
+	// Declarar un objeto
+	// Guardar los datos del usuario en un objeto 
+    function salvarCampos(){
+        var usuario = {};
+        usuario.nombre=document.getElementById("nombre").value;
+        usuario.contrasena=document.getElementById("contrasena").value;
+        return usuario;
+    }
+	
+	function Ingresar(){
+		var usuario=salvarCampos();
+		
+		var serializado = "";
+		// Serializar el objeto como una cadena de texto JSON
+		serializado = JSON.stringify( usuario );
+		window.alert( serializado );
+		// Crear un objeto para hacer peticiones HTTP
+		var request = new XMLHttpRequest();
+		// Abrir una peticion HTTP POST a la url deseado y no asincronico
+		request.open( "POST", "/login", false );
+		// Ejecuta la peticion HTTP
+		request.send( serializado );
+		
+		// responseText contiene el cuerpo de la respuesta enviada desde el servidor
+		// en el objeto XMLHttpRequest
+		var respuesta;
+		respuesta = JSON.parse( request.responseText );  
+		
+		console.log( respuesta );
+		
+		if(respuesta.estado == 'ok'){
+			// Login correcto
+			document.getElementById('mensaje').innerHTML = 'Bienvenido';
+			window.location.href = 'https://danielmt10.github.io/RepositoryDaniel/jugar.html';
+		} else {
+			document.getElementById('mensaje').innerHTML = respuesta.estado;
+		}
+	}
+	
+</script>
+  </head>
+    
+    
+    
+    
+  <body>
+      
+    <div>
+
+    <h1>Bienvenido a Gravity</h1>
+
+  <form action="#" >
+	<p>
+    <label>
+      Username:
+    </label>
+      <input type="text" id="nombre" value="">
+
+	</p>
+	<p>
+	  <label>
+      Password :
+    </label>
+      <input type="password" id="contrasena" value="">
+
+	</p>
+	<div id="mensaje">  </div>
+</form>
+
+	<button id="guardar" onclick="Ingresar()"> JUGAR </button>
+        
+ 
+  
+    </div>
+          
+  </body>
+</html>
+
+
+
+
+
+
