@@ -1,0 +1,131 @@
+<html>
+  <head>
+      <meta charset="utf-8">
+    <title>Registro</title>
+    <style>
+
+body{
+        font-family: Verdana;
+		font-size: 120%;
+		padding: 8em;
+        background-color: #417CA4;
+}
+        input{
+            margin: 2%;
+        }
+        span{
+            margin: 2px;
+        }
+        
+        button{
+            height: 10%;
+            width: 10%;
+            text-align: center;
+            margin: auto;
+            top: 50%;
+            
+        }
+        
+        
+    div{
+    background-color: #1A5983;
+    text-align: center;
+	margin: 7px;
+    margin: auto;
+        }
+
+div div{
+    display: inline-grid;
+    text-align: center;
+	margin: 7px;
+    margin: auto;
+}
+
+
+</style>
+<script>
+    
+function salvarCampos(){
+    var usuario = {};
+    usuario.nombre=document.getElementById("nombre").value;
+    usuario.correo=document.getElementById("correo").value;
+    usuario.contrasena=document.getElementById("contraseña").value;
+    return usuario;
+}
+ function registrar(){
+     var usuario = salvarCampos();
+     var serializado = "";
+     //Serializar el objeto como una cadena de texto JSON
+     serializado=JSON.stringify(usuario);
+     window.alert(serializado);
+     //Crear un objeto para hacer peticiones HTTP
+     var request = new XMLHttpRequest();
+     //Abrir una petición HTTP POST a la url deseado y no asincronico
+     request.open("POST","/registrar",false);
+     //Ejecuta la peticion HTTP
+     request.send(serializado);
+     
+ }
+    
+    function validarCampos (){
+        var emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+        if(document.getElementById("nombre").value == '' ||
+          document.getElementById("correo").value.length == '' ||
+          document.getElementById("contraseña").value.length == '' ||
+          document.getElementById("ccontraseña").value.length == ''){
+              
+              window.alert ("Ingrese por favor todos los datos requeridos");
+              
+          } else if(document.getElementById("contraseña").value 
+                    != document.getElementById("ccontraseña").value){
+              window.alert ("la confirmación de contraseña no coincide con la ingresada");
+              
+          } else if (!emailRegex.test(document.getElementById("correo").value)){
+              window.alert ("Correo electrónico no válido");
+          }
+            else { 
+                
+                
+            registrar();
+            
+                nombre.value = "";
+                correo.value = "";
+                contraseña.value = "";
+                ccontraseña.value ="";
+                
+   
+          }
+    }
+    
+    
+    
+</script>
+ </head>
+    
+    
+  <body>
+      
+    <div id= 'mayor'>
+        
+        <h1>¿Eres nuevo?</h1>
+        <h4>Registrate!</h4>
+    <div>    
+        <span> Nombre: </span> 
+	    <span> Correo: </span> 
+	    <span> Contraseña: </span>  
+   	    <span> Confirmar contraseña: </span> 
+
+    </div>
+        
+    <div>    
+        <input type="text" id="nombre" />
+        <input type="text" id="correo" />
+        <input type="password" id="contraseña" />
+         <input type="password" id="ccontraseña" />
+    </div>    
+        
+  </div>
+       <button id="registrar" onclick="validarCampos()">Registrar</button>
+      
+  </body>
+</html>
